@@ -19,9 +19,9 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
       if (changes.chartData.currentValue.data.type === 'bar') {
         this.chart = c3.generate(changes.chartData.currentValue);
       } else {
-      const changeObject = {...changes.chartData.currentValue.data, unload: true};
-      console.log(changeObject);
-      this.chart.load(changeObject);
+        const changeObject = { ...changes.chartData.currentValue.data, unload: true };
+        console.log(changeObject);
+        this.chart.load(changeObject);
       }
     }
   }
@@ -31,12 +31,9 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   renderChart() {
-    const config: c3.ChartConfiguration  = this.chartData;
-    console.log(config);
-    this.chart = c3.generate(config);
-    console.log('Chart created');
+    if (this.chartData) {
+      this.chart = c3.generate(this.chartData);
+    }
   }
-
 }
-
 

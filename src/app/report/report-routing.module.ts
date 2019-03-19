@@ -9,9 +9,9 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      {path: 'reports', component: ReportComponent},
-      {path: 'insert/:reportId', component: InsertComponent},
-      {path: '', redirectTo: '/report/reports', pathMatch: 'full'}
+      { path: 'reports', component: ReportComponent },
+      { path: 'insert/:reportId', component: InsertComponent },
+      { path: '', redirectTo: '/report/reports', pathMatch: 'full' }
     ]
   }
 ];

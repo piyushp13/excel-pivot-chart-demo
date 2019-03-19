@@ -1,10 +1,8 @@
 <div class="report-container">
   <div class="report-container__nav">
     <nav mat-tab-nav-bar [backgroundColor]="background">
-      <a mat-tab-link *ngFor="let link of links"
-         (click)="activeLink = link"
-         [active]="activeLink == link"
-         [routerLink]="link"> {{link}} </a>
+      <a mat-tab-link *ngFor="let link of links" (click)="activeLink = link" [active]="activeLink == link"
+        [routerLink]="link"> {{link}} </a>
     </nav>
   </div>
   <div class="report-container__content">

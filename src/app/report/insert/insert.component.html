@@ -1,6 +1,7 @@
 <div *ngIf="reportsData" style="height: 100%;">
   <div style="height: 10%;">
-    <button mat-icon-button color="primary" (click)="openNewSheet(option)" *ngFor="let option of insertOptions" [ngSwitch]="option.id">
+    <button mat-icon-button color="primary" (click)="openNewSheet(option)" *ngFor="let option of insertOptions"
+      [ngSwitch]="option.id">
       <mat-icon *ngSwitchCase="'chart'">insert_chart</mat-icon>
       <mat-icon *ngSwitchCase="'pivot'">table_chart</mat-icon>
     </button>
@@ -9,11 +10,12 @@
     <mat-tab *ngFor="let sheet of reportsData.pages" [label]="sheet.label" style="height: 100%;">
       <div style="height: 80%;" [ngSwitch]="sheet.type">
         <ng-template matTabContent style="height: 100%;">
-            <app-table-cont [tableData]="sheet.data" [columns]="getKeys(sheet.data[0])" style="height: 100%;" *ngSwitchCase="'table'">
-              </app-table-cont>
-              <app-chart [chartData]="sheet.data" style="height: 100%;" *ngSwitchCase="'chart'"></app-chart>
-              <app-pivot style="height: 100%;" *ngSwitchCase="'pivot'"></app-pivot>
-              <app-drilldown style="height: 100%;" *ngSwitchCase="'drilldown'"></app-drilldown>
+          <app-table-cont [tableData]="sheet.data" [columns]="getKeys(sheet.data[0])" style="height: 100%;"
+            *ngSwitchCase="'table'">
+          </app-table-cont>
+          <app-chart [chartData]="sheet.data" style="height: 100%;" *ngSwitchCase="'chart'"></app-chart>
+          <app-pivot style="height: 100%;" *ngSwitchCase="'pivot'"></app-pivot>
+          <app-drilldown style="height: 100%;" *ngSwitchCase="'drilldown'"></app-drilldown>
         </ng-template>
       </div>
     </mat-tab>
