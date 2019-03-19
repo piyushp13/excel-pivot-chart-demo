@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PlanogramService } from 'src/app/services/planogram.service';
+import { Observable } from 'rxjs';
+import { ReportsData } from '../reports-list-model';
+import { ReportsService } from '../reports.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-report',
@@ -8,9 +11,27 @@ import { PlanogramService } from 'src/app/services/planogram.service';
 })
 export class ReportComponent implements OnInit {
 
-  constructor(public planoService: PlanogramService) { }
+  public reportsData: Observable<ReportsData>;
+  public columnsToDisplay = [
+    'reportName',
+    'modifiedOn',
+    'modifiedBy',
+    'scheduledBy'];
+  public recordIdentifierKey = 'reportId';
+  constructor(public reportsService: ReportsService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.getReports();
+  }
+
+  getReports() {
+    this.reportsData = this.reportsService.getReportsList();
+  }
+
+  openReport(reportId: number) {
+    this.router.navigate(['report', 'insert', reportId]);
   }
 
 }
+

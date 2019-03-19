@@ -1,0 +1,77 @@
+<form #chartForm="ngForm" style="width: 100%; height: 100%;">
+    <div fxLayout="column" fxLayoutAlign="start center" style="width: 100%; height: 100%;">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="10" fxFlexAlign="stretch">
+          Insert Chart
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center" fxFlex="80" fxFlexAlign="stretch">
+          <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100" fxFlexAlign="stretch">
+            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="30" fxFlexAlign="stretch">
+              <div *ngFor="let chartType of chartTypes" fxLayout="row" fxLayoutAlign="start center" fxFlexAlign="stretch" class="menu-item" [ngClass]="{'menu-selected': selectedChartType === chartType}" (click)="selectedChartType = chartType; updateChartData(selectedChartType)">
+                {{chartType}}
+              </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="70" fxFlexAlign="stretch" [ngSwitch]="selectedChartType" style="padding-top: 24px;">
+              <div *ngSwitchCase="'line'" fxLayout="row" fxLayoutAlign="space-around center" fxFlexAlign="stretch">
+                <div>                 
+                  <mat-form-field *ngIf="data && data[0]">
+                    <mat-select placeholder="Select X-Axis" [(ngModel)]="xAxis" name="xAxis">
+                      <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>  
+                <div>
+                  <mat-form-field *ngIf="data && data[0]">
+                    <mat-select placeholder="Select Y-Axis" multiple [(ngModel)]="yAxis" name="yAxis" (selectionChange)="updateChartData(selectedChartType)">
+                      <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div *ngSwitchCase="'bar'" fxLayout="row"  fxLayoutAlign="space-around start" fxFlexAlign="stretch">
+                  <div>                 
+                      <mat-form-field *ngIf="data && data[0]">
+                        <mat-select placeholder="Select X-Axis" [(ngModel)]="xAxis" name="xAxis">
+                          <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>  
+                    <div>
+                      <mat-form-field *ngIf="data && data[0]">
+                        <mat-select placeholder="Select Y-Axis" multiple [(ngModel)]="yAxis" name="yAxis" (selectionChange)="updateChartData(selectedChartType)">
+                          <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+              </div>
+              <div *ngSwitchCase="'pie'"  fxLayoutAlign="start start">
+              </div>
+              <div *ngSwitchCase="'scatter'" fxLayout="row"  fxLayoutAlign="space-around start" fxFlexAlign="stretch">
+                  <div>                 
+                      <mat-form-field *ngIf="data && data[0]">
+                        <mat-select placeholder="Select X-Axis" [(ngModel)]="xAxis" name="xAxis">
+                          <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>  
+                    <div>
+                      <mat-form-field *ngIf="data && data[0]">
+                        <mat-select placeholder="Select Y-Axis" multiple [(ngModel)]="yAxis" name="yAxis" (selectionChange)="updateChartData(selectedChartType)">
+                          <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'stacked-bar'"  fxLayoutAlign="start start">
+
+                  </div>
+              <div>
+                <app-chart [chartData]="chartData"></app-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="start center">
+          <button type="button" mat-raised-button [mat-dialog-close]="chartData" color="primary">Create Chart</button>
+        </div>
+      </div>
+</form>

@@ -1,7 +1,2 @@
-<p>
-  report works!
-</p>
-<p>
-  {{planoService.planogramId}}
-</p>
-<button mat-raised-button color="warn" routerLink="/landing">Home</button>
+<app-table-cont [tableData]="reportsData | async" [columns]="columnsToDisplay"
+[tableRowIdentifier]="recordIdentifierKey" (clicked)="openReport($event)"></app-table-cont>

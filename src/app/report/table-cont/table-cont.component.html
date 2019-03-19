@@ -1,0 +1,14 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns">{{col}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let report of tableData" (click)="handleClick(report[tableRowIdentifier])" class="hovered-row">
+        <td *ngFor="let col of columns">{{report[col]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
