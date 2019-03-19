@@ -15,9 +15,9 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('Change', changes);
     if (this.chart && 'chartData' in changes) {
       const changeObject = {...changes.chartData.currentValue.data, unload: true};
+      console.log(changeObject);
       this.chart.load(changeObject);
     }
   }

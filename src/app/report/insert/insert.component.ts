@@ -51,6 +51,7 @@ export class InsertComponent implements OnInit {
       data: this.reportsData.pages[0].data
     }).afterClosed().subscribe(data => {
       console.log(data);
+      if (data) {
       const newSheetLabel = `Sheet${this.reportsData.pages.length + 1}`;
       const newSheetData = {
         label: newSheetLabel,
@@ -59,8 +60,9 @@ export class InsertComponent implements OnInit {
       };
       this.reportsData.pages.push(newSheetData);
       this.snackBar.open(`${newSheetLabel} added successfully`, null, {
-        duration: 2000
+        duration: 1000
       });
+    }
     });
   }
 

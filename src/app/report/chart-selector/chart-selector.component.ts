@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { ChartConfiguration } from 'c3';
 
 @Component({
   selector: 'app-chart-selector',
@@ -40,7 +41,7 @@ export class ChartSelectorComponent implements OnInit {
   }
 
   updateChartData(chartType: string) {
-    const updatedChartData = {
+    const updatedChartData: ChartConfiguration = {
       data: {
         json: this.data,
         keys: {
@@ -55,6 +56,10 @@ export class ChartSelectorComponent implements OnInit {
         }
       }
     };
+    if (this.selectedChartType === 'stacked-bar') {
+      updatedChartData.data.type = 'bar';
+      updatedChartData.data.groups = [this.yAxis];
+    }
     this.chartData = updatedChartData;
     return updatedChartData;
   }
