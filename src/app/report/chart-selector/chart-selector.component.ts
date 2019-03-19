@@ -48,7 +48,8 @@ export class ChartSelectorComponent implements OnInit {
           x: this.xAxis,
           value: this.yAxis
         },
-        type: chartType
+        type: chartType,
+        groups: []
       },
       axis: {
         x: {
