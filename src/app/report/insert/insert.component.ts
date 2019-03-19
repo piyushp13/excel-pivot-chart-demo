@@ -5,7 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartSelectorComponent } from '../chart-selector/chart-selector.component';
 import { PivotBuilderComponent } from '../pivot-builder/pivot-builder.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { ComponentTemplate, ComponentType } from '@angular/core/src/render3';
+import { ComponentType } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-insert',
@@ -43,7 +43,7 @@ export class InsertComponent implements OnInit {
     return Object.keys(obj);
   }
 
-  openNewSheet(sheetData: {label: string, id: string, component: ComponentType<ChartSelectorComponent | PivotBuilderComponent>}) {
+  openNewSheet(sheetData: {label: string, id: string, component: any}) {
     console.log(sheetData);
     this.dialog.open(sheetData.component, {
       width: '800px',
