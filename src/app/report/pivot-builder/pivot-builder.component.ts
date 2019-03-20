@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-pivot-builder',
@@ -6,10 +7,104 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pivot-builder.component.scss']
 })
 export class PivotBuilderComponent implements OnInit {
-
-  constructor() { }
+  public columns = [];
+  public tableData = [];
+  public selectedFilters = [];
+  public selectedRows = [];
+  public selectedColumns = [];
+  public selectedValues = [];
+  private data;
+  constructor(@Inject(MAT_DIALOG_DATA) data) {
+    this.columns = Object.keys(data[0]);
+    this.data = data;
+  }
 
   ngOnInit() {
+  }
+
+  updateTableData() {
+    const valueFieldKey = this.selectedValues[0];
+    this.tableData = this.getAggregatedTable(this.data, this.selectedRows, valueFieldKey);
+  }
+
+  getAggregatedTable(tableData: object[], rowFieldKeys: string[], valueFieldKey: string) {
+    const aggregatedData = [];
+    const lastLevel = rowFieldKeys[rowFieldKeys.length - 1];
+    const uniqueValsObject = {};
+    rowFieldKeys.forEach(rowFieldKey => {
+      const values = [...new Set(tableData.map(item => item[rowFieldKey]))];
+      uniqueValsObject[rowFieldKey] = {
+        index: 0,
+        values: values,
+        condition: values[0]
+      };
+    });
+    let indexPtr = 0;
+    console.log(uniqueValsObject);
+    while (true) {
+      const itemsLeft = Object.values(uniqueValsObject).map((item: any) => item.values.length - item.index).reduce((p, t) => p + t);
+      console.log(uniqueValsObject);
+      if (itemsLeft > 0) {
+        const rowValueObj = uniqueValsObject[rowFieldKeys[indexPtr]];
+        const rowFieldValue = rowValueObj.values[rowValueObj.index];
+        rowValueObj.condition = rowValueObj.values[rowValueObj.index];
+        if (indexPtr === rowFieldKeys.length - 1) {
+          uniqueValsObject[lastLevel].values.forEach(lastLevelValue => {
+            const dataRows = {};
+            const filData = tableData.filter(item => {
+              let condition = true;
+              for (let j = 0; j < indexPtr; j++) {
+                condition = condition && uniqueValsObject[rowFieldKeys[j]].condition === item[rowFieldKeys[j]];
+              }
+              return condition && item[lastLevel] === lastLevelValue;
+            });
+            if (filData.length > 0) {
+              dataRows[lastLevelValue] = filData.reduce((prev, total) => ({
+                [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+              }))[valueFieldKey];
+              aggregatedData.push(dataRows);
+            }
+          });
+          rowValueObj.index = rowValueObj.values.length;
+          rowValueObj.index = 0;
+          indexPtr = indexPtr - 1;
+          if (indexPtr >= 1) {
+            if (uniqueValsObject[rowFieldKeys[indexPtr]].index === uniqueValsObject[rowFieldKeys[indexPtr]].values.length) {
+              uniqueValsObject[rowFieldKeys[indexPtr]].index = 0;
+              indexPtr = indexPtr - 1;
+            }
+          }
+        } else if (indexPtr < rowFieldKeys.length - 1) {
+          const dataRowFiltered = tableData.filter(item => {
+            let condition = true;
+            for (let j = 0; j < indexPtr; j++) {
+              condition = condition && uniqueValsObject[rowFieldKeys[j]].condition === item[rowFieldKeys[j]];
+            }
+            return condition && item[rowFieldKeys[indexPtr]] === rowFieldValue;
+          });
+          const dataRow = {};
+          if (dataRowFiltered.length > 0) {
+            dataRow[rowFieldValue] = dataRowFiltered.reduce((prev, total) => ({
+              [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+            }))[valueFieldKey];
+            aggregatedData.push(dataRow);
+          }
+          if (rowValueObj.index >= rowValueObj.values.length && indexPtr !== 0) {
+            rowValueObj.index = 0;
+          } else {
+            rowValueObj.index++;
+          }
+          indexPtr++;
+        } else {
+          console.log('Entered inner else', indexPtr, rowValueObj);
+          indexPtr = indexPtr - 1;
+        }
+      } else {
+        break;
+      }
+    }
+    console.log(aggregatedData);
+    return aggregatedData;
   }
 
 }

@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~7.2.9",
     "@angular/router": "~7.2.9",
     "@types/c3": "^0.6.3",
+    "alasql": "^0.4.11",
     "body-parser": "^1.18.3",
     "c3": "^0.6.13",
     "core-js": "^2.6.3",

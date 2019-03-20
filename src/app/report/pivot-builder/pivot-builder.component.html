@@ -1,3 +1,62 @@
-<p>
-  pivot-builder works!
-</p>
+<form #pivotForm="ngForm" style="width: 100%; height: 100%;">
+  <div fxLayout="column" fxLayoutAlign="start center" class="pivot-container">
+    <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch">
+      Create Pivot Table
+    </div>
+    <div fxFlex="90" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch">
+      <div fxFlex="50" fxLayout="column" fxLayoutAlign="start center" fxFlexAlign="stretch">
+        <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
+          <div>
+            <mat-form-field>
+              <mat-select multiple [(ngModel)]="selectedFilters" name="selectedFilters" placeholder="Select Filters">
+                <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
+          <div fxFlexAlign="stretch">
+            <mat-form-field>
+              <mat-select multiple [(ngModel)]="selectedRows" name="selectedRows" placeholder="Select Rows"
+                (selectionChange)="updateTableData()">
+                <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlexAlign="stretch">
+            <div *ngFor="let row of selectedRows" class="menu-item" fxFlexAlign="stretch">{{row}}</div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="50" fxLayout="column" fxLayoutAlign="start center" fxFlexAlign="stretch">
+        <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
+          <div>
+            <mat-form-field>
+              <mat-select multiple [(ngModel)]="selectedColumns" name="selectedColumns" placeholder="Select Columns">
+                <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
+          <div>
+            <mat-form-field>
+              <mat-select multiple [(ngModel)]="selectedValues" name="selectedValues" placeholder="Select Values">
+                <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

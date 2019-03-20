@@ -51,12 +51,16 @@ export class InsertComponent implements OnInit {
       data: this.reportsData.pages[0].data
     }).afterClosed().subscribe(data => {
       console.log(data);
+      let type = 'chart';
+      if (sheetData.component instanceof PivotBuilderComponent) {
+        type = 'pivot';
+      }
       if (data) {
       const newSheetLabel = `Sheet${this.reportsData.pages.length + 1}`;
       const newSheetData = {
         label: newSheetLabel,
         data: data,
-        type: 'chart'
+        type: type
       };
       this.reportsData.pages.push(newSheetData);
       this.snackBar.open(`${newSheetLabel} added successfully`, null, {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pivot',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pivot.component.scss']
 })
 export class PivotComponent implements OnInit {
-
+  @Input() pivotData: any;
   constructor() { }
 
   ngOnInit() {
