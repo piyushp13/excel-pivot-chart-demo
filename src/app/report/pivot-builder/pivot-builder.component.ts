@@ -24,10 +24,10 @@ export class PivotBuilderComponent implements OnInit {
 
   updateTableData() {
     const valueFieldKey = this.selectedValues[0];
-    this.tableData = this.getAggregatedTable(this.data, this.selectedRows, valueFieldKey);
+    this.tableData = this.getAggregatedTable(this.data, this.selectedRows, this.selectedValues);
   }
 
-  getAggregatedTable(tableData: object[], rowFieldKeys: string[], valueFieldKey: string) {
+  getAggregatedTable(tableData: object[], rowFieldKeys: string[], valueFieldKeys: string[]) {
     const aggregatedData = [];
     const lastLevel = rowFieldKeys[rowFieldKeys.length - 1];
     const uniqueValsObject = {};
@@ -58,9 +58,13 @@ export class PivotBuilderComponent implements OnInit {
               return condition && item[lastLevel] === lastLevelValue;
             });
             if (filData.length > 0) {
-              dataRows[lastLevelValue] = filData.reduce((prev, total) => ({
-                [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
-              }))[valueFieldKey];
+              dataRows['label'] = lastLevelValue;
+              for (let k = 0; k < valueFieldKeys.length; k++) {
+                const valueFieldKey = valueFieldKeys[k];
+                dataRows[valueFieldKey] = filData.reduce((prev, total) => ({
+                  [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+                }))[valueFieldKey];
+              }
               aggregatedData.push(dataRows);
             }
           });
@@ -85,9 +89,13 @@ export class PivotBuilderComponent implements OnInit {
           });
           const dataRow = {};
           if (dataRowFiltered.length > 0) {
-            dataRow[rowFieldValue] = dataRowFiltered.reduce((prev, total) => ({
-              [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
-            }))[valueFieldKey];
+            dataRow['label'] = rowFieldValue;
+            for (let k = 0; k < valueFieldKeys.length; k++) {
+              const valueFieldKey = valueFieldKeys[k];
+              dataRow[valueFieldKey] = dataRowFiltered.reduce((prev, total) => ({
+                [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+              }))[valueFieldKey];
+            }
             const sym1 = Symbol.for('expandable');
             dataRow[sym1] = indexPtr;
             aggregatedData.push(dataRow);
