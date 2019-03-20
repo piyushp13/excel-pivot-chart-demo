@@ -1,0 +1,29 @@
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th {
+    border: 1px solid grey;
+    background: green;
+    color: white;
+  }
+  
+  th,
+  td {
+    height: 36px;
+    text-align: center;
+  }
+  
+  .hovered-row {
+    :hover {
+      background: lightblue;
+      cursor: pointer;
+    }
+  }

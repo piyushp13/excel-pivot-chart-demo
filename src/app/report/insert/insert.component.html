@@ -14,7 +14,7 @@
             *ngSwitchCase="'table'">
           </app-table-cont>
           <app-chart [chartData]="sheet.data" style="height: 100%;" *ngSwitchCase="'chart'"></app-chart>
-          <app-pivot style="height: 100%;" *ngSwitchCase="'pivot'"></app-pivot>
+          <app-pivot [pivotData]="sheet.data" style="height: 100%;" *ngSwitchCase="'pivot'"></app-pivot>
           <app-drilldown style="height: 100%;" *ngSwitchCase="'drilldown'"></app-drilldown>
         </ng-template>
       </div>

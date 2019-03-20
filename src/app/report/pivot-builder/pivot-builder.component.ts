@@ -43,7 +43,6 @@ export class PivotBuilderComponent implements OnInit {
     console.log(uniqueValsObject);
     while (true) {
       const itemsLeft = Object.values(uniqueValsObject).map((item: any) => item.values.length - item.index).reduce((p, t) => p + t);
-      console.log(uniqueValsObject);
       if (itemsLeft > 0) {
         const rowValueObj = uniqueValsObject[rowFieldKeys[indexPtr]];
         const rowFieldValue = rowValueObj.values[rowValueObj.index];
@@ -66,7 +65,9 @@ export class PivotBuilderComponent implements OnInit {
             }
           });
           rowValueObj.index = rowValueObj.values.length;
-          rowValueObj.index = 0;
+          if (rowFieldKeys.length > 1) {
+            rowValueObj.index = 0;
+          }
           indexPtr = indexPtr - 1;
           if (indexPtr >= 1) {
             if (uniqueValsObject[rowFieldKeys[indexPtr]].index === uniqueValsObject[rowFieldKeys[indexPtr]].values.length) {
@@ -87,6 +88,8 @@ export class PivotBuilderComponent implements OnInit {
             dataRow[rowFieldValue] = dataRowFiltered.reduce((prev, total) => ({
               [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
             }))[valueFieldKey];
+            const sym1 = Symbol.for('expandable');
+            dataRow[sym1] = indexPtr;
             aggregatedData.push(dataRow);
           }
           if (rowValueObj.index >= rowValueObj.values.length && indexPtr !== 0) {
@@ -96,7 +99,6 @@ export class PivotBuilderComponent implements OnInit {
           }
           indexPtr++;
         } else {
-          console.log('Entered inner else', indexPtr, rowValueObj);
           indexPtr = indexPtr - 1;
         }
       } else {
@@ -104,6 +106,7 @@ export class PivotBuilderComponent implements OnInit {
       }
     }
     console.log(aggregatedData);
+    this.tableData = aggregatedData;
     return aggregatedData;
   }
 

@@ -7,9 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PivotComponent implements OnInit {
   @Input() pivotData: any;
-  constructor() { }
+  public rowValues = [];
+  constructor() {
+  }
 
   ngOnInit() {
+    this.rowValues = Object.keys(this.pivotData);
+  }
+
+  getKeys(obj) {
+    return Object.keys(obj);
   }
 
 }

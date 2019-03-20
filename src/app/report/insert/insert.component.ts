@@ -52,7 +52,7 @@ export class InsertComponent implements OnInit {
     }).afterClosed().subscribe(data => {
       console.log(data);
       let type = 'chart';
-      if (sheetData.component instanceof PivotBuilderComponent) {
+      if (sheetData.id === 'pivot') {
         type = 'pivot';
       }
       if (data) {

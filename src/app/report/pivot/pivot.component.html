@@ -1,0 +1,24 @@
+<div style="width: 100%; height: 100%;">
+    <table>
+        <thead>
+            <tr>
+                <th>Label</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of pivotData">
+                <td>
+                    <!-- <span *ngIf="row.hasOwnProperty(Symbol.for('expandable'))">
+                        <button mat-icon-button>
+                            <mat-icon *ngIf="!row.expanded">expand_more</mat-icon>
+                            <mat-icon *ngIf="row.expanded">expand_less</mat-icon>
+                        </button>
+                    </span> -->
+                    {{getKeys(row)[0]}}
+                </td>
+                <td>{{row[getKeys(row)[0]]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
