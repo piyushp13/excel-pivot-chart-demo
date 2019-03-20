@@ -33,7 +33,6 @@ export class ReportsService {
       };
     });
     let indexPtr = 0;
-    console.log(uniqueValsObject);
     while (true) {
       const itemsLeft = Object.values(uniqueValsObject).map((item: any) => item.values.length - item.index).reduce((p, t) => p + t);
       if (itemsLeft > 0) {
