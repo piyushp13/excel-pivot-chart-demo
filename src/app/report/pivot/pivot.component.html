@@ -1,3 +1,15 @@
-<div style="width: 100%; height: 100%;" *ngIf="pivotData">
-    <app-table-cont [tableData]="pivotData"></app-table-cont>
+<div style="width: 100%; height: 100%;" *ngIf="columns">
+    <div fxFlexAlign="stretch">
+        <mat-form-field>
+            <mat-select multiple placeholder="{{pivotData.filters[0]}}" [(ngModel)]="selectedFilters"
+            (selectionChange)="updateTableData()">
+                <mat-option *ngFor="let filter of filters" [value]="filter">
+                    {{filter}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div fxFlexAlign="stretch">
+        <app-table-cont [tableData]="pivotData.data" [columns]="columns"></app-table-cont>
+    </div>
 </div>

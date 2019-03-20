@@ -59,7 +59,14 @@ export class InsertComponent implements OnInit {
       const newSheetLabel = `Sheet${this.reportsData.pages.length + 1}`;
       const newSheetData = {
         label: newSheetLabel,
-        data: data,
+        data: {
+          data: data.data,
+          filters: data.filters,
+          rows: data.rows,
+          values: data.values,
+          columns: data.columns,
+          _data: data._data
+        },
         type: type
       };
       this.reportsData.pages.push(newSheetData);
