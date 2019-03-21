@@ -17,7 +17,6 @@ export class PivotComponent implements OnInit {
   ngOnInit() {
     this.columns = Object.keys(this.pivotData.data[0]);
     this.filters = [...new Set(this.pivotData._data.map(item => item[this.pivotData.filters[0]]))];
-    console.log(this.filters);
   }
 
   updateTableData() {

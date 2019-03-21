@@ -141,7 +141,7 @@
                     "Season": "Spring",
                     "Sales rep": "George",
                     "Product": "Radishes",
-                    "Units sold": 100,
+                    "Units sold": 1000,
                     "Profit": 2290
                 },
                 {
@@ -309,7 +309,7 @@
                     "Season": "Fall",
                     "Sales rep": "George",
                     "Product": "Oranges",
-                    "Units sold": 200,
+                    "Units sold": 2000,
                     "Profit": 2400
                 },
                 {

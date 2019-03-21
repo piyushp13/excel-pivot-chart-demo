@@ -22,6 +22,7 @@ export class ReportsService {
 
   getAggregatedTable(tableData: object[], rowFieldKeys: string[], valueFieldKeys: string[]) {
     const aggregatedData = [];
+    if (rowFieldKeys.length > 0) {
     const lastLevel = rowFieldKeys[rowFieldKeys.length - 1];
     const uniqueValsObject = {};
     rowFieldKeys.forEach(rowFieldKey => {
@@ -33,7 +34,6 @@ export class ReportsService {
       };
     });
     let indexPtr = 0;
-    console.log(uniqueValsObject);
     while (true) {
       const itemsLeft = Object.values(uniqueValsObject).map((item: any) => item.values.length - item.index).reduce((p, t) => p + t);
       if (itemsLeft > 0) {
@@ -106,7 +106,15 @@ export class ReportsService {
         break;
       }
     }
-    console.log(aggregatedData);
+  } else if (valueFieldKeys.length > 0) {
+    const dataRow = {};
+    valueFieldKeys.forEach(valueFieldKey => {
+      dataRow[valueFieldKey] = tableData.reduce((prev, total) => ({
+        [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+      }))[valueFieldKey];
+    });
+    aggregatedData.push(dataRow);
+  }
     return aggregatedData;
   }
 }

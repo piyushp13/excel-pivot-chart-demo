@@ -34,7 +34,6 @@ export class InsertComponent implements OnInit {
 
   getReport(reportId: number) {
     this.reportsService.getReportData(reportId).subscribe(data => {
-      console.log('data', data);
       this.reportsData = data;
     });
   }
@@ -44,13 +43,11 @@ export class InsertComponent implements OnInit {
   }
 
   openNewSheet(sheetData: {label: string, id: string, component: any}) {
-    console.log(sheetData);
     this.dialog.open(sheetData.component, {
       width: '800px',
       height: '500px',
       data: this.reportsData.pages[0].data
     }).afterClosed().subscribe(data => {
-      console.log(data);
       let type = 'chart';
       if (sheetData.id === 'pivot') {
         type = 'pivot';

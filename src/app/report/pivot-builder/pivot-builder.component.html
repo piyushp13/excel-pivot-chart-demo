@@ -47,7 +47,8 @@
         <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
           <div>
             <mat-form-field>
-              <mat-select multiple [(ngModel)]="selectedValues" name="selectedValues" placeholder="Select Values">
+              <mat-select multiple [(ngModel)]="selectedValues" name="selectedValues" 
+              (selectionChange)="updateTableData()" placeholder="Select Values">
                 <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -60,7 +61,7 @@
     </div>
     <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch">
       <div>
-        <button type="button" color="primary" [mat-dialog-close]="exportedData">Insert Pivot Table</button>
+        <button type="button" color="primary" mat-raised-button [mat-dialog-close]="exportedData">Insert Pivot Table</button>
       </div>
     </div>
   </div>
