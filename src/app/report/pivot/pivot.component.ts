@@ -11,17 +11,38 @@ export class PivotComponent implements OnInit {
   public columns = [];
   public filters = [];
   public selectedFilters = [];
+  private filteredKeys = ['__isHidden__', '__expanded__', '__endIndex__'];
+  public expandableSymbol = Symbol.for('expandable');
+  public expansionMapping = [];
   constructor(private reportsService: ReportsService) {
   }
 
   ngOnInit() {
-    this.columns = Object.keys(this.pivotData.data[0]);
+    this.columns = Object.keys(this.pivotData.data[0]).filter(key => !this.filteredKeys.includes(key));
     this.filters = [...new Set(this.pivotData._data.map(item => item[this.pivotData.filters[0]]))];
   }
 
   updateTableData() {
     const filteredTable = this.pivotData._data.filter(item => this.selectedFilters.includes(item[this.pivotData.filters[0]]));
-    this.pivotData.data = this.reportsService.getAggregatedTable(filteredTable, this.pivotData.rows, this.pivotData.values);
+    this.reportsService.getAggregatedTable(filteredTable, this.pivotData.rows, this.pivotData.values)
+      .then(res => {
+        this.pivotData.data = res;
+      })
+      .catch(error => {
+        console.log(`Error: ${error}`);
+      });
+  }
+
+  toggleRows(rowNumber: number) {
+    const targetRow = this.pivotData.data[rowNumber];
+    targetRow['__expanded__'] = !targetRow['__expanded__'];
+    for (let i = rowNumber + 1; i <= targetRow['__endIndex__']; i++) {
+      this.pivotData.data[i]['__isHidden__'] = !targetRow['__expanded__'];
+    }
+  }
+
+  toggleAllRows() {
+    //
   }
 
 }

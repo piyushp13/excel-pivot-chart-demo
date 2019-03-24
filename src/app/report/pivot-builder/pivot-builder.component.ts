@@ -11,9 +11,9 @@ export class PivotBuilderComponent implements OnInit {
   public columns = [];
   public tableData = [];
   public selectedFilters = [];
-  public selectedRows = [];
+  public selectedRows = ['Season', 'Sales rep', 'Product'];
   public selectedColumns = [];
-  public selectedValues = [];
+  public selectedValues = ['Units sold'];
   public exportedData = {
     data: this.tableData,
     rows: this.selectedRows,
@@ -33,15 +33,21 @@ export class PivotBuilderComponent implements OnInit {
   }
 
   updateTableData() {
-    this.tableData = this.reportsService.getAggregatedTable(this.data, this.selectedRows, this.selectedValues);
-    this.exportedData = {
-      data: this.tableData,
-      rows: this.selectedRows,
-      columns: this.selectedColumns,
-      values: this.selectedValues,
-      filters: this.selectedFilters,
-      _data: this.data
-    };
+    this.reportsService.getAggregatedTable(this.data, this.selectedRows, this.selectedValues)
+    .then((res: []) => {
+      this.tableData = res;
+      this.exportedData = {
+        data: this.tableData,
+        rows: this.selectedRows,
+        columns: this.selectedColumns,
+        values: this.selectedValues,
+        filters: this.selectedFilters,
+        _data: this.data
+      };
+    })
+    .catch(error => {
+      console.log(`Error: ${error}`);
+    });
   }
 
 }

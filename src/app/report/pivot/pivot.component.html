@@ -2,7 +2,7 @@
     <div fxFlexAlign="stretch">
         <mat-form-field>
             <mat-select multiple placeholder="{{pivotData.filters[0]}}" [(ngModel)]="selectedFilters"
-            (selectionChange)="updateTableData()">
+                (selectionChange)="updateTableData()">
                 <mat-option *ngFor="let filter of filters" [value]="filter">
                     {{filter}}
                 </mat-option>
@@ -10,6 +10,21 @@
         </mat-form-field>
     </div>
     <div fxFlexAlign="stretch">
-        <app-table-cont [tableData]="pivotData.data" [columns]="columns"></app-table-cont>
+        <table>
+            <tr>
+                <th *ngFor="let col of columns">{{col}}</th>
+            </tr>
+            <tr *ngFor="let row of pivotData.data;let rowNum = index" [hidden]="row['__isHidden__']"
+                (click)="toggleRows(rowNum)">
+                <td>
+                    <span *ngIf="row.hasOwnProperty(expandableSymbol)">
+                        <button mat-icon-button>
+                            <mat-icon *ngIf="!row['__isHidden__']">expand_less</mat-icon>
+                            <mat-icon *ngIf="row['__isHidden__']">expand_more</mat-icon>
+                        </button></span>
+                    {{row[columns[0]]}}</td>
+                <td *ngFor="let col of columns.slice(1)">{{row[col]}}</td>
+            </tr>
+        </table>
     </div>
 </div>
