@@ -19,8 +19,8 @@
                 <td>
                     <span *ngIf="row.hasOwnProperty(expandableSymbol)">
                         <button mat-icon-button>
-                            <mat-icon *ngIf="!row['__isHidden__']">expand_less</mat-icon>
-                            <mat-icon *ngIf="row['__isHidden__']">expand_more</mat-icon>
+                            <mat-icon *ngIf="row['__expanded__']">expand_less</mat-icon>
+                            <mat-icon *ngIf="!row['__expanded__']">expand_more</mat-icon>
                         </button></span>
                     {{row[columns[0]]}}</td>
                 <td *ngFor="let col of columns.slice(1)">{{row[col]}}</td>
