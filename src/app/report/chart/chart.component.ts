@@ -32,6 +32,7 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
 
   renderChart() {
     if (this.chartData) {
+      console.log(this.chartData);
       this.chart = c3.generate(this.chartData);
     }
   }
