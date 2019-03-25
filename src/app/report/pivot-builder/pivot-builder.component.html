@@ -3,7 +3,7 @@
     <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch">
       Create Pivot Table
     </div>
-    <div fxFlex="80" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch">
+    <div fxFlex="80" fxLayout="{{view === 'dialog' ? 'row' : 'column'}}" fxLayoutAlign="view === 'dialog' ? 'center center' : 'start center'" fxFlexAlign="stretch">
       <div fxFlex="50" fxLayout="column" fxLayoutAlign="start center" fxFlexAlign="stretch">
         <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
           <div>
@@ -27,7 +27,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div fxFlexAlign="stretch">
+          <div fxFlexAlign="stretch" style="overflow-y: auto;">
             <div *ngFor="let row of selectedRows" class="menu-item" fxFlexAlign="stretch">{{row}}</div>
           </div>
         </div>
@@ -60,9 +60,9 @@
         </div>
       </div>
     </div>
-    <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch">
+    <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch" *ngIf="view === 'dialog'">
       <div>
-        <button type="button" color="primary" mat-raised-button [mat-dialog-close]="exportedData">Insert Pivot Table</button>
+        <button type="button" color="primary" mat-raised-button [mat-dialog-close]="pivotData">Insert Pivot Table</button>
       </div>
     </div>
   </div>

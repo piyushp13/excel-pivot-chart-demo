@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatTabsModule, MatIconModule, MatDialogModule, MatOptionModule,
-  MatFormFieldModule, MatSelectModule, MatSnackBarModule } from '@angular/material';
+  MatFormFieldModule, MatSelectModule, MatSnackBarModule, MatSidenavModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule
   ],
   exports: [
     MatButtonModule,
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule
   ]
 })
 export class SharedModule { }

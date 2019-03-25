@@ -7,7 +7,7 @@ import { ReportsData, Report } from './reports-list-model';
   providedIn: 'root'
 })
 export class ReportsService {
-  public expandableSymbol = Symbol.for('expandable');
+  public expandableSymbol = '__level__';
   constructor(private _http: HttpClient) { }
 
   getReportsList(): Observable<ReportsData> {
@@ -92,7 +92,7 @@ export class ReportsService {
                       [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
                     }))[valueFieldKey];
                   }
-                  const sym1 = Symbol.for('expandable');
+                  const sym1 = '__level__';
                   dataRow[sym1] = indexPtr;
                   dataRow['__isHidden__'] = false;
                   dataRow['__endIndex__'] = aggregatedData.length;

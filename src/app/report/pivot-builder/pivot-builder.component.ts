@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, Optional, Output, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { ReportsService } from '../reports.service';
 
@@ -8,13 +8,14 @@ import { ReportsService } from '../reports.service';
   styleUrls: ['./pivot-builder.component.scss']
 })
 export class PivotBuilderComponent implements OnInit {
+  @Input() view;
   public columns = [];
   public tableData = [];
   public selectedFilters = [];
   public selectedRows = ['Season', 'Sales rep', 'Product'];
   public selectedColumns = [];
   public selectedValues = ['Units sold'];
-  public exportedData = {
+  @Input() public pivotData = {
     data: this.tableData,
     rows: this.selectedRows,
     columns: this.selectedColumns,
@@ -22,32 +23,56 @@ export class PivotBuilderComponent implements OnInit {
     filters: this.selectedFilters,
     _data: []
   };
+  @Output() update = new EventEmitter();
   private data;
-  constructor(@Inject(MAT_DIALOG_DATA) data,
-  private reportsService: ReportsService) {
-    this.columns = Object.keys(data[0]);
-    this.data = data;
+  constructor(private reportsService: ReportsService,
+    @Optional() @Inject(MAT_DIALOG_DATA) data) {
+      console.log(this.pivotData);
+    if (this.view !== 'sidenav') {
+      this.view = 'dialog';
+      this.data = data;
+      if (this.data) {
+        this.columns = Object.keys(this.data[0]);
+      }
+    } else {
+      this.data = this.pivotData._data;
+      this.selectedFilters = this.pivotData.filters;
+      this.selectedColumns = this.pivotData.columns;
+      this.selectedRows = this.pivotData.rows;
+      this.selectedValues = this.pivotData.values;
+      this.tableData = this.pivotData.data;
+    }
   }
 
   ngOnInit() {
+    if (this.view === 'sidenav') {
+      this.data = this.pivotData._data;
+      this.selectedFilters = this.pivotData.filters;
+      this.selectedColumns = this.pivotData.columns;
+      this.selectedRows = this.pivotData.rows;
+      this.selectedValues = this.pivotData.values;
+      this.tableData = this.pivotData.data;
+      this.columns = Object.keys(this.data[0]);
+    }
   }
 
   updateTableData() {
     this.reportsService.getAggregatedTable(this.data, this.selectedRows, this.selectedValues)
-    .then((res: []) => {
-      this.tableData = res;
-      this.exportedData = {
-        data: this.tableData,
-        rows: this.selectedRows,
-        columns: this.selectedColumns,
-        values: this.selectedValues,
-        filters: this.selectedFilters,
-        _data: this.data
-      };
-    })
-    .catch(error => {
-      console.log(`Error: ${error}`);
-    });
+      .then((res: []) => {
+        this.tableData = res;
+        this.pivotData = {
+          data: this.tableData,
+          rows: this.selectedRows,
+          columns: this.selectedColumns,
+          values: this.selectedValues,
+          filters: this.selectedFilters,
+          _data: this.data
+        };
+        this.update.emit(this.pivotData);
+      })
+      .catch(error => {
+        console.log(`Error: ${error}`);
+      });
   }
 
 }

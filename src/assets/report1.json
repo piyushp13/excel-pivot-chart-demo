@@ -183,7 +183,7 @@
                     "Season": "Summer",
                     "Sales rep": "George",
                     "Product": "Strawberries",
-                    "Units sold": 30 ,
+                    "Units sold": 30,
                     "Profit": 2400
                 },
                 {
@@ -260,7 +260,7 @@
                     "Season": "Fall",
                     "Sales rep": "Jenny",
                     "Product": "Squash",
-                    "Units sold": 62 ,
+                    "Units sold": 62,
                     "Profit": 2400
                 },
                 {
@@ -337,7 +337,7 @@
                     "Season": "Fall",
                     "Sales rep": "Dave",
                     "Product": "Oranges",
-                    "Units sold": 50 ,
+                    "Units sold": 50,
                     "Profit": 2400
                 }
             ],
@@ -378,7 +378,728 @@
         },
         {
             "label": "Sheet 3",
-            "data": {},
+            "data": {
+                "data": [
+                    {
+                        "label": "Winter",
+                        "Units sold": 4100,
+                        "__level__": 0,
+                        "__isHidden__": false,
+                        "__endIndex__": 15,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Jenny",
+                        "Units sold": 1030,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 5,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Oranges",
+                        "Units sold": 300,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Grapefruit",
+                        "Units sold": 230,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Apples",
+                        "Units sold": 200,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Bananas",
+                        "Units sold": 300,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "George",
+                        "Units sold": 1420,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 10,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Oranges",
+                        "Units sold": 800,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Grapefruit",
+                        "Units sold": 200,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Apples",
+                        "Units sold": 120,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Bananas",
+                        "Units sold": 300,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Dave",
+                        "Units sold": 1650,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 15,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Oranges",
+                        "Units sold": 450,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Grapefruit",
+                        "Units sold": 400,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Apples",
+                        "Units sold": 400,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Bananas",
+                        "Units sold": 400,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Spring",
+                        "Units sold": 4760,
+                        "__level__": 0,
+                        "__isHidden__": false,
+                        "__endIndex__": 31,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Jenny",
+                        "Units sold": 1040,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 21,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Beets",
+                        "Units sold": 210,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Potatoes",
+                        "Units sold": 400,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Lettuce",
+                        "Units sold": 200,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Radishes",
+                        "Units sold": 230,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "George",
+                        "Units sold": 2400,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 26,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Beets",
+                        "Units sold": 900,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Potatoes",
+                        "Units sold": 300,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Lettuce",
+                        "Units sold": 200,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Radishes",
+                        "Units sold": 1000,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Dave",
+                        "Units sold": 1320,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 31,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Beets",
+                        "Units sold": 220,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Potatoes",
+                        "Units sold": 300,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Lettuce",
+                        "Units sold": 400,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Radishes",
+                        "Units sold": 400,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Summer",
+                        "Units sold": 3473,
+                        "__level__": 0,
+                        "__isHidden__": false,
+                        "__endIndex__": 47,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Jenny",
+                        "Units sold": 1080,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 37,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Blueberries",
+                        "Units sold": 100,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Strawberries",
+                        "Units sold": 560,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Grapes",
+                        "Units sold": 120,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Pumpkins",
+                        "Units sold": 300,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "George",
+                        "Units sold": 1260,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 42,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Blueberries",
+                        "Units sold": 350,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Strawberries",
+                        "Units sold": 30,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Grapes",
+                        "Units sold": 240,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Pumpkins",
+                        "Units sold": 640,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Dave",
+                        "Units sold": 1133,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 47,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Blueberries",
+                        "Units sold": 530,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Strawberries",
+                        "Units sold": 230,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Grapes",
+                        "Units sold": 123,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Pumpkins",
+                        "Units sold": 250,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Fall",
+                        "Units sold": 5425,
+                        "__level__": 0,
+                        "__isHidden__": false,
+                        "__endIndex__": 63,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Jenny",
+                        "Units sold": 1272,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 53,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Oranges",
+                        "Units sold": 205,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Apples",
+                        "Units sold": 503,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Squash",
+                        "Units sold": 62,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Zucchini",
+                        "Units sold": 502,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "George",
+                        "Units sold": 3220,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 58,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Oranges",
+                        "Units sold": 2000,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Apples",
+                        "Units sold": 120,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Squash",
+                        "Units sold": 500,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Zucchini",
+                        "Units sold": 600,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Dave",
+                        "Units sold": 933,
+                        "__level__": 1,
+                        "__isHidden__": false,
+                        "__endIndex__": 63,
+                        "__expanded__": true
+                    },
+                    {
+                        "label": "Oranges",
+                        "Units sold": 50,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Apples",
+                        "Units sold": 340,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Squash",
+                        "Units sold": 140,
+                        "__isHidden__": false
+                    },
+                    {
+                        "label": "Zucchini",
+                        "Units sold": 403,
+                        "__isHidden__": false
+                    }
+                ],
+                "rows": [
+                    "Season",
+                    "Sales rep",
+                    "Product"
+                ],
+                "columns": [],
+                "values": [
+                    "Units sold"
+                ],
+                "filters": [
+                    "Season"
+                ],
+                "_data": [
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Jenny",
+                        "Product": "Oranges",
+                        "Units sold": 300,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "George",
+                        "Product": "Grapefruit",
+                        "Units sold": 200,
+                        "Profit": 2300
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Dave",
+                        "Product": "Apples",
+                        "Units sold": 400,
+                        "Profit": 2100
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Jenny",
+                        "Product": "Bananas",
+                        "Units sold": 300,
+                        "Profit": 3400
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "George",
+                        "Product": "Oranges",
+                        "Units sold": 800,
+                        "Profit": 2500
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Dave",
+                        "Product": "Grapefruit",
+                        "Units sold": 400,
+                        "Profit": 2900
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Jenny",
+                        "Product": "Apples",
+                        "Units sold": 200,
+                        "Profit": 4400
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "George",
+                        "Product": "Bananas",
+                        "Units sold": 300,
+                        "Profit": 1400
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Dave",
+                        "Product": "Oranges",
+                        "Units sold": 450,
+                        "Profit": 2000
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Jenny",
+                        "Product": "Grapefruit",
+                        "Units sold": 230,
+                        "Profit": 1230
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "George",
+                        "Product": "Apples",
+                        "Units sold": 120,
+                        "Profit": 2100
+                    },
+                    {
+                        "Season": "Winter",
+                        "Sales rep": "Dave",
+                        "Product": "Bananas",
+                        "Units sold": 400,
+                        "Profit": 2980
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Jenny",
+                        "Product": "Beets",
+                        "Units sold": 210,
+                        "Profit": 2150
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "George",
+                        "Product": "Potatoes",
+                        "Units sold": 300,
+                        "Profit": 2100
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Dave",
+                        "Product": "Lettuce",
+                        "Units sold": 400,
+                        "Profit": 2600
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Jenny",
+                        "Product": "Radishes",
+                        "Units sold": 230,
+                        "Profit": 2470
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "George",
+                        "Product": "Beets",
+                        "Units sold": 900,
+                        "Profit": 2490
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Dave",
+                        "Product": "Potatoes",
+                        "Units sold": 300,
+                        "Profit": 2120
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Jenny",
+                        "Product": "Lettuce",
+                        "Units sold": 200,
+                        "Profit": 2860
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "George",
+                        "Product": "Radishes",
+                        "Units sold": 1000,
+                        "Profit": 2290
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Dave",
+                        "Product": "Beets",
+                        "Units sold": 220,
+                        "Profit": 2010
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Jenny",
+                        "Product": "Potatoes",
+                        "Units sold": 400,
+                        "Profit": 5100
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "George",
+                        "Product": "Lettuce",
+                        "Units sold": 200,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Spring",
+                        "Sales rep": "Dave",
+                        "Product": "Radishes",
+                        "Units sold": 400,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Jenny",
+                        "Product": "Blueberries",
+                        "Units sold": 100,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "George",
+                        "Product": "Strawberries",
+                        "Units sold": 30,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Dave",
+                        "Product": "Grapes",
+                        "Units sold": 123,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Jenny",
+                        "Product": "Pumpkins",
+                        "Units sold": 300,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "George",
+                        "Product": "Blueberries",
+                        "Units sold": 350,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Dave",
+                        "Product": "Strawberries",
+                        "Units sold": 230,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Jenny",
+                        "Product": "Grapes",
+                        "Units sold": 120,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "George",
+                        "Product": "Pumpkins",
+                        "Units sold": 640,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Dave",
+                        "Product": "Blueberries",
+                        "Units sold": 530,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Jenny",
+                        "Product": "Strawberries",
+                        "Units sold": 560,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "George",
+                        "Product": "Grapes",
+                        "Units sold": 240,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Summer",
+                        "Sales rep": "Dave",
+                        "Product": "Pumpkins",
+                        "Units sold": 250,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Jenny",
+                        "Product": "Squash",
+                        "Units sold": 62,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "George",
+                        "Product": "Zucchini",
+                        "Units sold": 600,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Dave",
+                        "Product": "Apples",
+                        "Units sold": 340,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Jenny",
+                        "Product": "Oranges",
+                        "Units sold": 205,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "George",
+                        "Product": "Squash",
+                        "Units sold": 500,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Dave",
+                        "Product": "Zucchini",
+                        "Units sold": 403,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Jenny",
+                        "Product": "Apples",
+                        "Units sold": 503,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "George",
+                        "Product": "Oranges",
+                        "Units sold": 2000,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Dave",
+                        "Product": "Squash",
+                        "Units sold": 140,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Jenny",
+                        "Product": "Zucchini",
+                        "Units sold": 502,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "George",
+                        "Product": "Apples",
+                        "Units sold": 120,
+                        "Profit": 2400
+                    },
+                    {
+                        "Season": "Fall",
+                        "Sales rep": "Dave",
+                        "Product": "Oranges",
+                        "Units sold": 50,
+                        "Profit": 2400
+                    }
+                ]
+            },
             "type": "pivot"
         },
         {

@@ -11,15 +11,18 @@ export class PivotComponent implements OnInit {
   public columns = [];
   public filters = [];
   public selectedFilters = [];
-  private filteredKeys = ['__isHidden__', '__expanded__', '__endIndex__'];
-  public expandableSymbol = Symbol.for('expandable');
+  private filteredKeys = ['__isHidden__', '__expanded__', '__endIndex__', '__level__'];
+  public expandableSymbol = '__level__';
   public expansionMapping = [];
+  public maxLevel = 0;
   constructor(private reportsService: ReportsService) {
   }
 
   ngOnInit() {
+    console.log(this.pivotData);
     this.columns = Object.keys(this.pivotData.data[0]).filter(key => !this.filteredKeys.includes(key));
     this.filters = [...new Set(this.pivotData._data.map(item => item[this.pivotData.filters[0]]))];
+    this.maxLevel = this.pivotData.data.map(item => item[this.expandableSymbol]).sort((a, b) => b - a)[0];
   }
 
   updateTableData() {
@@ -27,10 +30,20 @@ export class PivotComponent implements OnInit {
     this.reportsService.getAggregatedTable(filteredTable, this.pivotData.rows, this.pivotData.values)
       .then(res => {
         this.pivotData.data = res;
+        this.columns = Object.keys(this.pivotData.data[0]).filter(key => !this.filteredKeys.includes(key));
+        this.filters = [...new Set(this.pivotData._data.map(item => item[this.pivotData.filters[0]]))];
+        this.maxLevel = this.pivotData.data.map(item => item[this.expandableSymbol]).sort((a, b) => b - a)[0];
       })
       .catch(error => {
         console.log(`Error: ${error}`);
       });
+  }
+
+  updatePivotData(event) {
+    this.pivotData = event;
+    this.columns = Object.keys(this.pivotData.data[0]).filter(key => !this.filteredKeys.includes(key));
+    this.filters = [...new Set(this.pivotData._data.map(item => item[this.pivotData.filters[0]]))];
+    this.maxLevel = this.pivotData.data.map(item => item[this.expandableSymbol]).sort((a, b) => b - a)[0];
   }
 
   toggleRows(rowNumber: number) {

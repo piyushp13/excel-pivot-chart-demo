@@ -66,9 +66,10 @@ export class InsertComponent implements OnInit {
         },
         type: type
       };
+      console.log(`Sheet data`, data);
       this.reportsData.pages.push(newSheetData);
       this.snackBar.open(`${newSheetLabel} added successfully`, null, {
-        duration: 1000
+        duration: 300
       });
     }
     });
