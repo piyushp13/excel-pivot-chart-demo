@@ -20,7 +20,6 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
         this.chart = c3.generate(changes.chartData.currentValue);
       } else {
         const changeObject = { ...changes.chartData.currentValue.data, unload: true };
-        console.log(changeObject);
         this.chart.load(changeObject);
       }
     }
@@ -32,7 +31,6 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
 
   renderChart() {
     if (this.chartData) {
-      console.log(this.chartData);
       this.chart = c3.generate(this.chartData);
     }
   }

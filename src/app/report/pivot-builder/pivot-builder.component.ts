@@ -27,7 +27,6 @@ export class PivotBuilderComponent implements OnInit {
   private data;
   constructor(private reportsService: ReportsService,
     @Optional() @Inject(MAT_DIALOG_DATA) data) {
-      console.log(this.pivotData);
     if (this.view !== 'sidenav') {
       this.view = 'dialog';
       this.data = data;

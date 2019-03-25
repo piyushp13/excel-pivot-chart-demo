@@ -19,7 +19,6 @@ export class PivotComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.pivotData);
     this.columns = Object.keys(this.pivotData.data[0]).filter(key => !this.filteredKeys.includes(key));
     this.filters = [...new Set(this.pivotData._data.map(item => item[this.pivotData.filters[0]]))];
     this.maxLevel = this.pivotData.data.map(item => item[this.expandableSymbol]).sort((a, b) => b - a)[0];

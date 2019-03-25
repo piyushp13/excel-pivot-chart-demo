@@ -26,7 +26,6 @@ export class ChartSelectorComponent implements OnInit {
   public columns = [];
   public chartData;
   constructor(@Inject(MAT_DIALOG_DATA) public data) {
-    console.log('Data ', data);
     this.columns = this.getKeys(data[0]);
     this.xAxis = this.columns[0];
     this.yAxis = [this.columns[1], this.columns[2]];
