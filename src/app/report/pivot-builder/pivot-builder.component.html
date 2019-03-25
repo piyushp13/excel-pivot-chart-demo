@@ -1,10 +1,10 @@
-<form #pivotForm="ngForm" style="width: 100%; height: 100%;">
+<form #pivotForm="ngForm" style="width: 100%; height: auto;">
   <div fxLayout="column" fxLayoutAlign="start center" class="pivot-container">
     <div fxFlex="10" fxLayout="row" fxLayoutAlign="center center" fxFlexAlign="stretch">
       Create Pivot Table
     </div>
-    <div fxFlex="80" fxLayout="{{view === 'dialog' ? 'row' : 'column'}}" fxLayoutAlign="view === 'dialog' ? 'center center' : 'start center'" fxFlexAlign="stretch">
-      <div fxFlex="50" fxLayout="column" fxLayoutAlign="start center" fxFlexAlign="stretch">
+    <div fxFlex="{{view === 'dialog' ? '50': '200'}}" fxLayout="{{view === 'dialog' ? 'row' : 'column'}}" fxLayoutAlign="view === 'dialog' ? 'center center' : 'start center'" fxFlexAlign="stretch">
+      <div fxFlex="{{view === 'dialog' ? '50': '150'}}" fxLayout="column" fxLayoutAlign="start center" fxFlexAlign="stretch">
         <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
           <div>
             <mat-form-field>
@@ -18,7 +18,7 @@
 
           </div>
         </div>
-        <div fxFlex="50" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
+        <div fxFlex="{{view === 'dialog' ? '50': '100'}}" fxLayout="column" fxLayoutAlign="start start" fxFlexAlign="stretch">
           <div fxFlexAlign="stretch">
             <mat-form-field>
               <mat-select multiple [(ngModel)]="selectedRows" name="selectedRows" placeholder="Select Rows"
@@ -27,8 +27,19 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div fxFlexAlign="stretch" style="overflow-y: auto;">
-            <div *ngFor="let row of selectedRows" class="menu-item" fxFlexAlign="stretch">{{row}}</div>
+          <div cdkDropList style="overflow-y: auto;" (cdkDropListDropped)="drop($event)" class="menu-list">
+            <div *ngFor="let row of selectedRows" class="menu-box" fxLayoutAlign="space-between center" cdkDrag>
+              <div class="menu-custom-placeholder" *cdkDragPlaceholder></div>
+              <div>
+                  {{row}}
+              </div>
+              <div>
+                <button mat-icon-button (click)="removeRow(row)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>

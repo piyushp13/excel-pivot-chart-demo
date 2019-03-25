@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input, Optional, Output, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { ReportsService } from '../reports.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-pivot-builder',
@@ -12,9 +13,9 @@ export class PivotBuilderComponent implements OnInit {
   public columns = [];
   public tableData = [];
   public selectedFilters = [];
-  public selectedRows = ['Season', 'Sales rep', 'Product'];
+  public selectedRows = [];
   public selectedColumns = [];
-  public selectedValues = ['Units sold'];
+  public selectedValues = [];
   @Input() public pivotData = {
     data: this.tableData,
     rows: this.selectedRows,
@@ -72,6 +73,17 @@ export class PivotBuilderComponent implements OnInit {
       .catch(error => {
         console.log(`Error: ${error}`);
       });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.selectedRows, event.previousIndex, event.currentIndex);
+    this.updateTableData();
+  }
+
+  removeRow(row: string) {
+    // this.selectedRows.splice(this.selectedRows.indexOf(row), 1);
+    this.selectedRows = this.selectedRows.filter(item => item !== row);
+    this.updateTableData();
   }
 
 }
