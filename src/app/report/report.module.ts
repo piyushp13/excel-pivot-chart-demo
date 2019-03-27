@@ -12,6 +12,8 @@ import { PivotComponent } from './pivot/pivot.component';
 import { DrilldownComponent } from './drilldown/drilldown.component';
 import { ChartSelectorComponent } from './chart-selector/chart-selector.component';
 import { PivotBuilderComponent } from './pivot-builder/pivot-builder.component';
+import { TestComponent } from './test/test.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ReportComponent,
@@ -22,11 +24,14 @@ import { PivotBuilderComponent } from './pivot-builder/pivot-builder.component';
     PivotComponent,
     DrilldownComponent,
     ChartSelectorComponent,
-    PivotBuilderComponent],
+    PivotBuilderComponent,
+    TestComponent],
   imports: [
     CommonModule,
     ReportRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     ChartSelectorComponent,
