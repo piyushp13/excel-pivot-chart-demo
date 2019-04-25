@@ -1,4 +1,59 @@
-<form #chartForm="ngForm" style="width: 100%; height: 100%;">
+<mat-sidenav-container style="width: 100%; height: 100%;" *ngIf="view === 'sidenav'">
+  <mat-sidenav mode="side" #sidenav position="end" style="width: 25%;">
+    <form #chartForm="ngForm" style="width: 100%; height: 100%;">
+      <div fxLayout="column" fxLayoutAlign="start center" style="width: 100%; height: 100%;">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="10" fxFlexAlign="stretch">
+          Insert Chart
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center" fxFlex="80" fxFlexAlign="stretch">
+          <div [fxLayout]="view === 'dialog' ? 'row' : 'column'" fxLayoutAlign="start center" fxFlex="100" fxFlexAlign="stretch">
+            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="30" fxFlexAlign="stretch">
+              <div *ngFor="let chartType of chartTypes" fxLayout="row" fxLayoutAlign="start center" fxFlexAlign="stretch"
+                class="menu-item" [ngClass]="{'menu-selected': selectedChartType === chartType}"
+                (click)="selectedChartType = chartType; updateChartData(selectedChartType)">
+                {{chartType}}
+              </div>
+            </div>
+            <div [fxLayout]="view === 'dialog' ? 'row' : 'column'" fxLayoutAlign="start start" fxFlex="70" fxFlexAlign="stretch" style="padding-top: 24px;">
+              <div [fxLayout]="view === 'dialog' ? 'row' : 'column'" fxLayoutAlign="space-around center" fxFlexAlign="stretch">
+                <div>
+                  <mat-form-field *ngIf="data && data[0]">
+                    <mat-select placeholder="Select X-Axis" [(ngModel)]="xAxis" name="xAxis">
+                      <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field *ngIf="data && data[0]">
+                    <mat-select placeholder="Select Y-Axis" multiple [(ngModel)]="yAxis" name="yAxis"
+                      (selectionChange)="updateChartData(selectedChartType)">
+                      <mat-option *ngFor="let column of columns" [value]="column">{{column}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <div style="width: 100%; height: 100%;">
+          <div fxLayout="row" fxFlexAlign="stretch">
+              <div fxLayout="row" fxFlex fxLayoutAlign="end center">
+                  <button (click)="sidenav.toggle()" mat-raised-button color="primary">
+                      {{sidenav.opened ? 'Close': 'Open'}} Chart Editor
+                  </button>
+              </div>
+          </div>
+          <div style="overflow: auto; max-height: 80%;">
+              <app-chart [chartData]="chartData"></app-chart>
+          </div>
+      </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<form #chartForm="ngForm" style="width: 100%; height: 100%;" *ngIf="view !== 'sidenav'">
   <div fxLayout="column" fxLayoutAlign="start center" style="width: 100%; height: 100%;">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex="10" fxFlexAlign="stretch">
       Insert Chart

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ReportsService } from '../reports.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { ReportsService } from '../reports.service';
 })
 export class PivotComponent implements OnInit {
   @Input() public pivotData: any;
+  @Output() update = new EventEmitter();
   public columns = [];
   public filters = [];
   public selectedFilters = [];
@@ -26,7 +27,7 @@ export class PivotComponent implements OnInit {
 
   updateTableData() {
     const filteredTable = this.pivotData._data.filter(item => this.selectedFilters.includes(item[this.pivotData.filters[0]]));
-    this.reportsService.getAggregatedTable(filteredTable, this.pivotData.rows, this.pivotData.values)
+    this.reportsService.getAggregatedTable(filteredTable, this.pivotData.rows, this.pivotData.values, this.pivotData.columns)
       .then(res => {
         this.pivotData.data = res;
         this.columns = Object.keys(this.pivotData.data[0]).filter(key => !this.filteredKeys.includes(key));
@@ -43,6 +44,7 @@ export class PivotComponent implements OnInit {
     this.columns = Object.keys(this.pivotData.data[0]).filter(key => !this.filteredKeys.includes(key));
     this.filters = [...new Set(this.pivotData._data.map(item => item[this.pivotData.filters[0]]))];
     this.maxLevel = this.pivotData.data.map(item => item[this.expandableSymbol]).sort((a, b) => b - a)[0];
+    this.update.emit(this.pivotData);
   }
 
   toggleRows(rowNumber: number) {

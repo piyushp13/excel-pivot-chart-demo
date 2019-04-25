@@ -57,7 +57,8 @@ export class PivotBuilderComponent implements OnInit {
   }
 
   updateTableData() {
-    this.reportsService.getAggregatedTable(this.data, this.selectedRows, this.selectedValues)
+    console.log('Updating table');
+    this.reportsService.getAggregatedTable(this.data, this.selectedRows, this.selectedValues, this.selectedColumns)
       .then((res: []) => {
         this.tableData = res;
         this.pivotData = {

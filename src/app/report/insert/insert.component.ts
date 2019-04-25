@@ -67,4 +67,8 @@ export class InsertComponent implements OnInit {
     });
   }
 
+  updateSheetData(value, sheetIndex) {
+    this.reportsData.pages[sheetIndex].data = value;
+  }
+
 }

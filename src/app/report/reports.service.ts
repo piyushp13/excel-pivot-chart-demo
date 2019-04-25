@@ -20,7 +20,7 @@ export class ReportsService {
     return this._http.get<Report>(reportApi);
   }
 
-  getAggregatedTable(tableData: object[], rowFieldKeys: string[], valueFieldKeys: string[]) {
+  getAggregatedTable(tableData: object[], rowFieldKeys: string[], valueFieldKeys: string[], columnFieldKeys: string[]) {
     const aggregatedData = [];
     return new Promise((resolve, reject) => {
       try {
@@ -44,7 +44,7 @@ export class ReportsService {
               rowValueObj.condition = rowValueObj.values[rowValueObj.index];
               if (indexPtr === rowFieldKeys.length - 1) {
                 uniqueValsObject[lastLevel].values.forEach(lastLevelValue => {
-                  const dataRows = {};
+                  let dataRows = {};
                   const filData = tableData.filter(item => {
                     let condition = true;
                     for (let j = 0; j < indexPtr; j++) {
@@ -56,9 +56,16 @@ export class ReportsService {
                     dataRows['label'] = lastLevelValue;
                     for (let k = 0; k < valueFieldKeys.length; k++) {
                       const valueFieldKey = valueFieldKeys[k];
-                      dataRows[valueFieldKey] = filData.reduce((prev, total) => ({
-                        [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+                      dataRows[valueFieldKey] = filData.reduce((res, item) => ({
+                        [valueFieldKey]: res[valueFieldKey] + item[valueFieldKey]
                       }))[valueFieldKey];
+                      columnFieldKeys.forEach((column) => {
+                        const columnFieldValueObject = filData.reduce((res, item) => ({
+                          ...res,
+                          [item[column] + valueFieldKey]: res[item[column]] ? res[item[column]] + item[valueFieldKey] : item[valueFieldKey]
+                        }), {});
+                        dataRows = { ...dataRows, ...columnFieldValueObject };
+                      });
                     }
                     dataRows['__isHidden__'] = false;
                     aggregatedData.push(dataRows);
@@ -83,14 +90,21 @@ export class ReportsService {
                   }
                   return condition && item[rowFieldKeys[indexPtr]] === rowFieldValue;
                 });
-                const dataRow = {};
+                let dataRow = {};
                 if (dataRowFiltered.length > 0) {
                   dataRow['label'] = rowFieldValue;
                   for (let k = 0; k < valueFieldKeys.length; k++) {
                     const valueFieldKey = valueFieldKeys[k];
-                    dataRow[valueFieldKey] = dataRowFiltered.reduce((prev, total) => ({
-                      [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+                    dataRow[valueFieldKey] = dataRowFiltered.reduce((res, item) => ({
+                      [valueFieldKey]: res[valueFieldKey] + item[valueFieldKey]
                     }))[valueFieldKey];
+                    columnFieldKeys.forEach((column) => {
+                      const columnFieldValueObject = dataRowFiltered.reduce((res, item) => ({
+                        ...res,
+                        [item[column] + valueFieldKey]: res[item[column]] ? res[item[column]] + item[valueFieldKey] : item[valueFieldKey]
+                      }), {});
+                      dataRow = { ...dataRow, ...columnFieldValueObject };
+                    });
                   }
                   const sym1 = '__level__';
                   dataRow[sym1] = indexPtr;
@@ -113,16 +127,24 @@ export class ReportsService {
             }
           }
         } else if (valueFieldKeys.length > 0) {
-          const dataRow = {};
+          let dataRow = {};
           valueFieldKeys.forEach(valueFieldKey => {
-            dataRow[valueFieldKey] = tableData.reduce((prev, total) => ({
-              [valueFieldKey]: prev[valueFieldKey] + total[valueFieldKey]
+            dataRow[valueFieldKey] = tableData.reduce((res, item) => ({
+              [valueFieldKey]: res[valueFieldKey] + item[valueFieldKey]
             }))[valueFieldKey];
+            columnFieldKeys.forEach((column) => {
+              const columnFieldValueObject = tableData.reduce((res, item) => ({
+                ...res,
+                [item[column] + valueFieldKey]: res[item[column]] ? res[item[column]] + item[valueFieldKey] : item[valueFieldKey]
+              }), {});
+              dataRow = { ...dataRow, ...columnFieldValueObject };
+            });
             dataRow['__isHidden__'] = false;
           });
           aggregatedData.push(dataRow);
         }
         this.generateExpansionMapping(aggregatedData).then(res => {
+          console.log('New data', aggregatedData);
           resolve(res);
         })
           .catch(error => {

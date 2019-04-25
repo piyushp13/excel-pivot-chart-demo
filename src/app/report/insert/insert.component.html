@@ -7,14 +7,18 @@
     </button>
   </div>
   <mat-tab-group headerPosition="below" style="height: 90%;">
-    <mat-tab *ngFor="let sheet of reportsData.pages" [label]="sheet.label" style="height: 100%;">
+    <mat-tab *ngFor="let sheet of reportsData.pages; let sheetIndex = index" [label]="sheet.label" style="height: 100%;">
       <div style="height: 80%;" [ngSwitch]="sheet.type">
         <ng-template matTabContent style="height: 100%;">
           <app-table-cont [tableData]="sheet.data" [columns]="getKeys(sheet.data[0])" style="height: 100%;"
             *ngSwitchCase="'table'">
           </app-table-cont>
-          <app-chart [chartData]="sheet.data" style="height: 100%;" *ngSwitchCase="'chart'"></app-chart>
-          <app-pivot [pivotData]="sheet.data" style="height: 100%;" *ngSwitchCase="'pivot'"></app-pivot>
+          <app-chart-selector [view]="'sidenav'" [chartInputData]="sheet.data" style="height: 100%;"
+          (update)="updateSheetData($event, sheetIndex)" *ngSwitchCase="'chart'">
+          </app-chart-selector>
+          <app-pivot [pivotData]="sheet.data" style="height: 100%;" *ngSwitchCase="'pivot'"
+          (update)="updateSheetData($event, sheetIndex)">
+          </app-pivot>
           <app-drilldown style="height: 100%;" *ngSwitchCase="'drilldown'"></app-drilldown>
         </ng-template>
       </div>
