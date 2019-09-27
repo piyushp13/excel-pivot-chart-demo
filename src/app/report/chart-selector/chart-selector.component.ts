@@ -39,7 +39,7 @@ export class ChartSelectorComponent implements OnInit {
     if (this.data) {
       this.columns = this.getKeys(data[0]);
       this.xAxis = this.columns[0];
-      this.yAxis = [this.columns[1], this.columns[2]];
+      this.yAxis = [this.columns[3]];
       this.chartData = this.updateChartData(this.selectedChartType);
     }
   }
