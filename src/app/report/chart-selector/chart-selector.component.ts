@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter, Optional } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
-import { ChartConfiguration } from 'c3';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChartConfiguration, ChartType } from 'c3';
 
 @Component({
   selector: 'app-chart-selector',
@@ -66,7 +66,7 @@ export class ChartSelectorComponent implements OnInit {
           x: this.xAxis,
           value: this.yAxis
         },
-        type: chartType,
+        type: chartType as ChartType,
         groups: []
       },
       axis: {

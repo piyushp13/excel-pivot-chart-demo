@@ -4,8 +4,8 @@ import { Report } from '../reports-list-model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartSelectorComponent } from '../chart-selector/chart-selector.component';
 import { PivotBuilderComponent } from '../pivot-builder/pivot-builder.component';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { ComponentType } from '@angular/core/src/render3';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-insert',

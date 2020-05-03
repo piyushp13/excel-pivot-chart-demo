@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Input, Optional, Output, EventEmitter } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReportsService } from '../reports.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
