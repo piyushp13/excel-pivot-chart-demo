@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatTabsModule, MatIconModule, MatDialogModule, MatOptionModule,
-  MatFormFieldModule, MatSelectModule, MatSnackBarModule, MatSidenavModule, MatAutocompleteModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -15,7 +23,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTabsModule,
     MatIconModule,
     MatDialogModule,
-    MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
@@ -30,7 +37,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTabsModule,
     MatIconModule,
     MatDialogModule,
-    MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
