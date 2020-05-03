@@ -1,6 +1,16 @@
 import xlsxwriter
 import json
-from pandas.io.json import json_normalize
+from pandas import json_normalize
+
+def getColumnHeaderFromIndex(index):
+    rem = index % 26
+    columnHeader = chr(rem + 65)
+    index = index // 26
+    while index > 0:
+        rem = index % 26
+        index = index // 26
+        columnHeader = chr(rem + 64) + columnHeader
+    return columnHeader
 
 def insert_table(worksheet, table_data, insert_start_cell = 'A1'):
     # Convert json to dataframe
@@ -84,15 +94,5 @@ for index, page in enumerate(pages):
         elif page["type"] == "chart":
             insert_chart(workbook, worksheet, page["data"], insert_start_cell = 'D2')
 
-
-def getColumnHeaderFromIndex(index):
-    rem = index % 26
-    columnHeader = chr(rem + 65)
-    index = index / 26
-    while index > 0:
-        rem = index % 26
-        index = index / 26
-        columnHeader = chr(rem + 64) + columnHeader
-    return columnHeader
 
 workbook.close()
