@@ -57,12 +57,12 @@ export class ReportsService {
                     for (let k = 0; k < valueFieldKeys.length; k++) {
                       const valueFieldKey = valueFieldKeys[k];
                       dataRows[valueFieldKey] = filData.reduce((res, item) => ({
-                        [valueFieldKey]: res[valueFieldKey] + item[valueFieldKey]
+                        [valueFieldKey]: +res[valueFieldKey] + +item[valueFieldKey]
                       }))[valueFieldKey];
                       columnFieldKeys.forEach((column) => {
                         const columnFieldValueObject = filData.reduce((res, item) => ({
                           ...res,
-                          [item[column] + valueFieldKey]: res[item[column]] ? res[item[column]] + item[valueFieldKey] : item[valueFieldKey]
+                          [item[column] + valueFieldKey]: (res[item[column] + valueFieldKey] ? +res[item[column] + valueFieldKey] + +item[valueFieldKey] : +item[valueFieldKey])
                         }), {});
                         dataRows = { ...dataRows, ...columnFieldValueObject };
                       });
@@ -96,12 +96,12 @@ export class ReportsService {
                   for (let k = 0; k < valueFieldKeys.length; k++) {
                     const valueFieldKey = valueFieldKeys[k];
                     dataRow[valueFieldKey] = dataRowFiltered.reduce((res, item) => ({
-                      [valueFieldKey]: res[valueFieldKey] + item[valueFieldKey]
+                      [valueFieldKey]: +res[valueFieldKey] + +item[valueFieldKey]
                     }))[valueFieldKey];
                     columnFieldKeys.forEach((column) => {
                       const columnFieldValueObject = dataRowFiltered.reduce((res, item) => ({
                         ...res,
-                        [item[column] + valueFieldKey]: res[item[column]] ? res[item[column]] + item[valueFieldKey] : item[valueFieldKey]
+                        [item[column] + valueFieldKey]: res[item[column] + valueFieldKey] ? +res[item[column] + valueFieldKey] + +item[valueFieldKey] : +item[valueFieldKey]
                       }), {});
                       dataRow = { ...dataRow, ...columnFieldValueObject };
                     });
@@ -130,12 +130,12 @@ export class ReportsService {
           let dataRow = {};
           valueFieldKeys.forEach(valueFieldKey => {
             dataRow[valueFieldKey] = tableData.reduce((res, item) => ({
-              [valueFieldKey]: res[valueFieldKey] + item[valueFieldKey]
+              [valueFieldKey]: +res[valueFieldKey] + +item[valueFieldKey]
             }))[valueFieldKey];
             columnFieldKeys.forEach((column) => {
               const columnFieldValueObject = tableData.reduce((res, item) => ({
                 ...res,
-                [item[column] + valueFieldKey]: res[item[column]] ? res[item[column]] + item[valueFieldKey] : item[valueFieldKey]
+                [item[column] + valueFieldKey]: res[item[column] + valueFieldKey] ? +res[item[column] + valueFieldKey] + +item[valueFieldKey] : +item[valueFieldKey]
               }), {});
               dataRow = { ...dataRow, ...columnFieldValueObject };
             });
