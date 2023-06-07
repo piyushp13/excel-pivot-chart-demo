@@ -30,7 +30,11 @@ export class ReportComponent implements OnInit {
   }
 
   openReport(reportId: number) {
+    console.log("Cool");
+    
+    
     this.router.navigate(['report', 'insert', reportId]);
+
   }
 
 }
